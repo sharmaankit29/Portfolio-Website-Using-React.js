@@ -79,6 +79,10 @@ npm run dev
 
 <img width="1782" height="847" alt="porfolio" src="https://github.com/user-attachments/assets/73fff8c1-7b1f-4ee7-b941-bae7290c81f0" />
 
+<img width="1551" height="866" alt="image" src="https://github.com/user-attachments/assets/3d60a2eb-9d60-4878-a2e6-853d7ad39608" />
+
+<img width="1553" height="866" alt="image" src="https://github.com/user-attachments/assets/ba86b5c7-5181-4585-9a4f-aa065e1ef546" />
+
 ---
 
 ## 📫 Connect With Me
