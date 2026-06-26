@@ -10,27 +10,10 @@ import About from './components/About/About.jsx'
 import Contact from './components/Contact/Contact.jsx'
 import User from './components/User/User.jsx'
 import Github from './components/Github/Github.jsx'
-
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <Layout/>,
-//     children: [
-//       {
-//         path: "",
-//         element: <Home />
-//       },
-//       {
-//         path: "about",
-//         element: <About />
-//       },
-//       {
-//         path: "contact",
-//         element: <Contact />
-//       }
-//     ]
-//   }
-// ])
+import Skills from './components/Skills/Skills.jsx'
+import Projects from './components/Projects/Projects.jsx'
+import Experience from './components/Experience/Experience.jsx'
+import Extracurricular from './components/Extracurricular/Extracurricular.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +21,10 @@ const router = createBrowserRouter(
     <Route path='' element={<Home/>} />
     <Route path='about' element={<About/>} />
     <Route path='contact' element={<Contact/>} />
+    <Route path='skills' element={<Skills/>} />
+    <Route path='projects' element={<Projects/>} />
+    <Route path='experience' element={<Experience/>} />
+    <Route path='extracurricular' element={<Extracurricular/>} />
     <Route path='user/:id' element={<User/>} />
     <Route path='github' element={<Github/>} />
     </Route>

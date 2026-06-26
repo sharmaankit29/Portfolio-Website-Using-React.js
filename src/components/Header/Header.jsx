@@ -1,146 +1,103 @@
-import React from "react";
-import { Link,NavLink } from "react-router-dom";
-
-//we use link tag instead of "a" tag bcoz "a" tag refreshes the page while in react we do not refresh the page
-//
-
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import Logo from "../../assets/Logo.png";
+import ResumePdf from "../../assets/Ankit_Resume.pdf";
+import { IoMenu, IoClose } from "react-icons/io5";
 
 export default function Header() {
-    return (
-        <header className="shadow sticky z-50 top-0">
-            <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
-                <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-                    <Link to="/" className="flex items-center">
-                        <img
-                            src="https://img.freepik.com/free-vector/creative-gradient-code-logo_23-2148820572.jpg?t=st=1743358160~exp=1743361760~hmac=da39959abebc6014cf6c4743fde6c4ccefc9a4cfd90d8792ab044c161147d9e3&w=740"
-                            className="mr-3 h-12"
-                            alt="Logo"
-                        />
-                        <h6>Sharma Ankit</h6>
-                    </Link>
-                    <div className="flex items-center lg:order-2">
-                        {/* <Link
-                            to="#"
-                            className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
-                        >
-                            Log in
-                        </Link> */}
-                        <Link
-                            to="#"
-                            className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
-                        >
-                            Get started
-                        </Link>
-                    </div>
-                    <div
-                        className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
-                        id="mobile-menu-2"
-                    >
-                        <ul className="flex flex-col mt-2 font-medium lg:flex-row lg:space-x-8 lg:mt-3">
-                            <li>
-                                <NavLink
-                                to="/"
-                                    className={({isActive}) =>
-                                        `block py-2 pr-4 
-                                        pl-3 duration-200 
-                                        border-b 
-                                        ${isActive ? "text-orange-700" : "text-grey-100"}
-                                        border-gray-100 
-                                        hover:bg-gray-50 
-                                        lg:hover:bg-transparent 
-                                        lg:border-0 
-                                        hover:text-orange-700 
-                                        lg:p-0`
-                                    }
-                                >
-                                    Home
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                to="/about"
-                                    className={({isActive}) =>
-                                        `block py-2 pr-4 
-                                        pl-3 duration-200 
-                                        border-b 
-                                        ${isActive ? "text-orange-700" : "text-grey-100"}
-                                        border-gray-100 
-                                        hover:bg-gray-50 
-                                        lg:hover:bg-transparent 
-                                        lg:border-0 
-                                        hover:text-orange-700 
-                                        lg:p-0`
-                                    }
-                                >
-                                    About
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                to="/contact"
-                                    className={({isActive}) =>
-                                        `block py-2 pr-4 
-                                        pl-3 duration-200 
-                                        border-b 
-                                        ${isActive ? "text-orange-700" : "text-grey-100"}
-                                        border-gray-100 
-                                        hover:bg-gray-50 
-                                        lg:hover:bg-transparent 
-                                        lg:border-0 
-                                        hover:text-orange-700 
-                                        lg:p-0`
-                                    }
-                                >
-                                    Contact
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                to="https://github.com/sharmaankit29" 
-                                target="blank"
-                                    className={({isActive}) =>
-                                        `block py-2 pr-4 
-                                        pl-3 duration-200 
-                                        border-b 
-                                        ${isActive ? "text-orange-700" : "text-grey-100"}
-                                        border-gray-100 
-                                        hover:bg-gray-50 
-                                        lg:hover:bg-transparent 
-                                        lg:border-0 
-                                        hover:text-orange-700 
-                                        lg:p-0`
-                                    }   
-                                >
-                                    Github
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                to="https://www.linkedin.com/in/ankit-sharma-239526289" 
-                                target="blank"
-                                    className={({isActive}) =>
-                                        `block py-2 pr-4 
-                                        pl-3 duration-200 
-                                        border-b 
-                                        ${isActive ? "text-orange-700" : "text-grey-100"}
-                                        border-gray-100 
-                                        hover:bg-gray-50 
-                                        lg:hover:bg-transparent 
-                                        lg:border-0 
-                                        hover:text-orange-700 
-                                        lg:p-0`
-                                    }   
-                                >
-                                    Linkedin
-                                </NavLink>
-                            </li>
-                            
-                            
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-    );
+  const [resumeDownloaded, setResumeDownloaded] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleResumeDownload = () => {
+    setResumeDownloaded(true);
+    window.setTimeout(() => setResumeDownloaded(false), 3000);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
+
+  return (
+    <header className="sticky top-0 z-50">
+      <nav className="bg-gray-900 border-b border-gray-800 px-4 lg:px-6 py-3">
+        <div className="max-w-screen-xl mx-auto flex items-center justify-between">
+          <Link to="/" className="flex items-center">
+            <img src={Logo} alt="logo" className="h-10 mr-3" />
+            <span className="text-white font-semibold hidden sm:inline">Sharma Ankit</span>
+            <span className="text-white font-semibold sm:hidden text-sm">SA</span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex lg:items-center lg:space-x-6">
+            <NavLink to="/" end className={({isActive}) => isActive ? 'text-orange-400 font-medium' : 'text-gray-200 hover:text-orange-400'}>Home</NavLink>
+            <NavLink to="/about" className={({isActive}) => isActive ? 'text-orange-400 font-medium' : 'text-gray-200 hover:text-orange-400'}>About</NavLink>
+            <NavLink to="/skills" className={({isActive}) => isActive ? 'text-orange-400 font-medium' : 'text-gray-200 hover:text-orange-400'}>Skills</NavLink>
+            <NavLink to="/projects" className={({isActive}) => isActive ? 'text-orange-400 font-medium' : 'text-gray-200 hover:text-orange-400'}>Projects</NavLink>
+            <NavLink to="/experience" className={({isActive}) => isActive ? 'text-orange-400 font-medium' : 'text-gray-200 hover:text-orange-400'}>Experience</NavLink>
+            <NavLink to="/extracurricular" className={({isActive}) => isActive ? 'text-orange-400 font-medium' : 'text-gray-200 hover:text-orange-400'}>Extracurricular</NavLink>
+            <NavLink to="/contact" className={({isActive}) => isActive ? 'text-orange-400 font-medium' : 'text-gray-200 hover:text-orange-400'}>Contact</NavLink>
+          </div>
+
+          {/* Desktop Resume Button */}
+          <div className="hidden lg:flex items-center">
+            <a
+              href={ResumePdf}
+              download="Ankit_Resume.pdf"
+              onClick={handleResumeDownload}
+              className="ml-4 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded"
+            >
+              Resume
+            </a>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <div className="lg:hidden flex items-center gap-3">
+            <a
+              href={ResumePdf}
+              download="Ankit_Resume.pdf"
+              onClick={handleResumeDownload}
+              className="bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 rounded text-sm"
+            >
+              Resume
+            </a>
+            <button
+              onClick={toggleMobileMenu}
+              className="text-white text-2xl focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <IoClose /> : <IoMenu />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden bg-gray-800 border-t border-gray-700 px-4 py-4 space-y-3 animate-in fade-in slide-in-from-top">
+            <NavLink to="/" end onClick={closeMobileMenu} className={({isActive}) => isActive ? 'block text-orange-400 font-medium py-2' : 'block text-gray-200 hover:text-orange-400 py-2'}>Home</NavLink>
+            <NavLink to="/about" onClick={closeMobileMenu} className={({isActive}) => isActive ? 'block text-orange-400 font-medium py-2' : 'block text-gray-200 hover:text-orange-400 py-2'}>About</NavLink>
+            <NavLink to="/skills" onClick={closeMobileMenu} className={({isActive}) => isActive ? 'block text-orange-400 font-medium py-2' : 'block text-gray-200 hover:text-orange-400 py-2'}>Skills</NavLink>
+            <NavLink to="/projects" onClick={closeMobileMenu} className={({isActive}) => isActive ? 'block text-orange-400 font-medium py-2' : 'block text-gray-200 hover:text-orange-400 py-2'}>Projects</NavLink>
+            <NavLink to="/experience" onClick={closeMobileMenu} className={({isActive}) => isActive ? 'block text-orange-400 font-medium py-2' : 'block text-gray-200 hover:text-orange-400 py-2'}>Experience</NavLink>
+            <NavLink to="/extracurricular" onClick={closeMobileMenu} className={({isActive}) => isActive ? 'block text-orange-400 font-medium py-2' : 'block text-gray-200 hover:text-orange-400 py-2'}>Extracurricular</NavLink>
+            <NavLink to="/contact" onClick={closeMobileMenu} className={({isActive}) => isActive ? 'block text-orange-400 font-medium py-2' : 'block text-gray-200 hover:text-orange-400 py-2'}>Contact</NavLink>
+          </div>
+        )}
+      </nav>
+      {resumeDownloaded && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 px-4 py-6">
+          <div className="resume-popup-card w-full max-w-md rounded-[2rem] border border-green-300/30 bg-slate-900/95 p-8 text-center text-white shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)] backdrop-blur-xl">
+            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-3xl text-emerald-600">
+              ✓
+            </div>
+            <h2 className="text-lg font-semibold text-white">Resume Downloaded Successfully</h2>
+          </div>
+        </div>
+      )}
+    </header>
+  );
 }
 

@@ -1,139 +1,73 @@
 import React from "react";
+import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { SiLeetcode } from "react-icons/si";
 
 export default function Contact() {
     return (
-        <div className="relative flex items-top justify-center min-h-[700px] bg-white sm:items-center sm:pt-0">
-            <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div className="mt-8 overflow-hidden">
-                    <div className="grid grid-cols-1 md:grid-cols-2">
-                        <div className="p-6 mr-2 bg-gray-100 sm:rounded-lg">
-                            <h1 className="text-3xl sm:text-4xl text-gray-800 font-extrabold tracking-tight">
-                                Get in touch: 
+        <div className="bg-gray-900 text-gray-100 py-8 sm:py-12 md:py-16">
+            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+                <div className="space-y-6 sm:space-y-8 md:space-y-10">
+                    <div className="rounded-3xl border border-slate-800 bg-slate-950/90 p-6 sm:p-8 shadow-sm">
+                        <div className="text-center">
+                            <p className="text-xs sm:text-sm font-serif italic uppercase tracking-widest text-white">Get In Touch</p>
+                            <h1 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-orange-300">
+                                Let&apos;s Connect
                             </h1>
-                            <p className="text-normal text-lg sm:text-xl font-medium text-gray-600 mt-2">
-                                Fill in the form to start a conversation
+                            <p className="mx-auto mt-3 sm:mt-4 max-w-3xl text-sm sm:text-base leading-6 sm:leading-7 text-slate-300">
+                                I&apos;m currently open to internships, software engineering opportunities, collaborations, and exciting projects. Whether you have an opportunity, a project idea, or simply want to connect, feel free to reach out.
                             </p>
-
-                            <div className="flex items-center mt-8 text-gray-600">
-                                <svg
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    viewBox="0 0 24 24"
-                                    className="w-8 h-8 text-gray-500"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="1.5"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                                    />
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="1.5"
-                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                                    />
-                                </svg>
-                                <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                                    Kashimira, Thane, Maharashtra, 401107
-                                </div>
-                            </div>
-
-                            <div className="flex items-center mt-4 text-gray-600">
-                                <svg
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    viewBox="0 0 24 24"
-                                    className="w-8 h-8 text-gray-500"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="1.5"
-                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                                    />
-                                </svg>
-                                <div className="ml-4 text-md tracking-wide font-semibold w-30">
-                                 +91 9987879738
-                                </div>
-                            </div>
-
-                            <div className="flex items-center mt-2 text-gray-600">
-                                <svg
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    viewBox="0 0 24 24"
-                                    className="w-8 h-8 text-gray-500"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="1.5"
-                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                    />
-                                </svg>
-                                <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                                    ankit.2907ms@gmail.com
-                                </div>
-                            </div>
+                            <p className="mx-auto mt-3 sm:mt-4 max-w-3xl text-xs sm:text-sm leading-6 text-slate-400">
+                                You can contact me directly via email or explore my profiles to know more about my work and technical journey.
+                            </p>
                         </div>
+                    </div>
 
-                        <form className="p-6 flex flex-col justify-center">
-                            <div className="flex flex-col">
-                                <label for="name" className="hidden">
-                                    Full Name
-                                </label>
-                                <input
-                                    type="name"
-                                    name="name"
-                                    id="name"
-                                    placeholder="Full Name"
-                                    className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-orange-500 focus:outline-none"
-                                />
+                    <div className="mt-4 sm:mt-6 grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-4">
+                        <a href="#" className="group flex h-full flex-col justify-between rounded-3xl border border-slate-800 bg-slate-950 p-4 sm:p-5 transition-transform transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/20 hover:border-orange-500/30">
+                            <div>
+                                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-orange-500/10 text-orange-300">
+                                    <FiMail className="h-5 w-5" />
+                                </div>
+                                <p className="mt-3 text-xs uppercase tracking-wider text-slate-400">📧 Email</p>
+                                <p className="mt-2 text-sm sm:text-base font-semibold text-white break-all">ankit.2907ms@gmail.com</p>
                             </div>
+                        </a>
 
-                            <div className="flex flex-col mt-2">
-                                <label for="email" className="hidden">
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    id="email"
-                                    placeholder="Email"
-                                    className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-orange-500 focus:outline-none"
-                                />
+                        <a href="https://linkedin.com/in/ankit-sharma-239526289" target="_blank" rel="noreferrer" className="group flex h-full flex-col justify-between rounded-3xl border border-slate-800 bg-slate-950 p-4 sm:p-5 transition-transform transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/20 hover:border-blue-400/30">
+                            <div>
+                                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-300">
+                                    <FiLinkedin className="h-5 w-5" />
+                                </div>
+                                <p className="mt-3 text-xs uppercase tracking-wider text-slate-400">💼 LinkedIn</p>
+                                <p className="mt-2 text-sm sm:text-base font-semibold text-white">Connect professionally</p>
                             </div>
+                        </a>
 
-                            <div className="flex flex-col mt-2">
-                                <label for="tel" className="hidden">
-                                    Number
-                                </label>
-                                <input
-                                    type="tel"
-                                    name="tel"
-                                    id="tel"
-                                    placeholder="Contact Number"
-                                    className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-orange-500 focus:outline-none"
-                                />
+                        <a href="https://github.com/sharmaankit29" target="_blank" rel="noreferrer" className="group flex h-full flex-col justify-between rounded-3xl border border-slate-800 bg-slate-950 p-4 sm:p-5 transition-transform transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-500/20 hover:border-violet-400/30">
+                            <div>
+                                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-violet-500/10 text-violet-300">
+                                    <FiGithub className="h-5 w-5" />
+                                </div>
+                                <p className="mt-3 text-xs uppercase tracking-wider text-slate-400">💻 GitHub</p>
+                                <p className="mt-2 text-sm sm:text-base font-semibold text-white">Explore my projects</p>
                             </div>
+                        </a>
 
-                            <button
-                                type="submit"
-                                className="md:w-32 bg-orange-700 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-orange-600 transition ease-in-out duration-300"
-                            >
-                                Submit
-                            </button>
-                        </form>
+                        <a href="https://leetcode.com/u/Ankit_9987" target="_blank" rel="noreferrer" className="group flex h-full flex-col justify-between rounded-3xl border border-slate-800 bg-slate-950 p-4 sm:p-5 transition-transform transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-emerald-500/20 hover:border-emerald-400/30">
+                            <div>
+                                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-300">
+                                    <SiLeetcode className="h-5 w-5" />
+                                </div>
+                                <p className="mt-3 text-xs uppercase tracking-wider text-slate-400">🧩 LeetCode</p>
+                                <p className="mt-2 text-sm sm:text-base font-semibold text-white">View my journey</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div className="rounded-3xl border border-slate-800 bg-slate-950/90 p-6 sm:p-8 text-center text-slate-300">
+                        <p className="text-sm sm:text-base leading-6 sm:leading-7">
+                            Always open to new opportunities, collaborations, and meaningful conversations.
+                        </p>
                     </div>
                 </div>
             </div>

@@ -1,50 +1,130 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+function Counter({ end = 0, duration = 1500, suffix = '', decimals = 0 }) {
+    const [value, setValue] = useState(0);
+
+    useEffect(() => {
+        let start = 0;
+        let startTime = null;
+        const step = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const current = start + (end - start) * progress;
+            setValue(current);
+            if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+        return () => {};
+    }, [end, duration]);
+
+    return (
+        <span className="font-bold text-2xl text-white">
+            {decimals > 0 ? value.toFixed(decimals) : Math.floor(value)}{suffix}
+        </span>
+    );
+}
 
 export default function About() {
     return (
-        <div className="py-16 bg-white">
-            <div className="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
-                <div className="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12">
-                    <div className="md:5/12 lg:w-5/12">
-                        <img
-                            src="https://img.freepik.com/free-vector/programming-concept-illustration_114360-1325.jpg?t=st=1743361105~exp=1743364705~hmac=ea19704c6dcb8aa08c5a2acecff50a22ca41ec38baca88ea2ec695288b50a3bc&w=740"
-                            alt="image"
-                        />
-                        {/* <img
-                            src="https://img.freepik.com/free-photo/top-view-copy-space-with-devices_23-2148223235.jpg?t=st=1743253612~exp=1743257212~hmac=85231957763787df75f5145259e584bfdb96bd29c32667f0051661f8b8f8a15e&w=740"
-                            alt="image"
-                        /> */}
-                    </div>
-                    <div className="md:7/12 lg:w-6/12">
-                        <h2 className="text-2xl text-gray-900 font-bold md:text-4xl">
-                        🚀 Aspiring Engineer | Driven by Innovation & Discipline
-                        </h2>
-                        <p className="mt-6 text-gray-600">
-                        Motivated and detail-oriented second-year engineering student with a solid foundation in mathematics and science. Eager to apply analytical and problem-solving skills in a dynamic, real-world environment. As an active NCC cadet, I bring leadership, teamwork, and discipline—qualities that enhance my ability to adapt, collaborate, and contribute effectively. Passionate about leveraging technical knowledge to drive innovation and add value to an organization.
-                        </p>
+        <div className="py-8 sm:py-12 md:py-16 bg-gray-900 text-gray-300">
+            <div className="container mx-auto px-4 sm:px-6 md:px-12 xl:px-6">
+                <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-8">
+                    <div className="md:w-2/3 w-full">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl text-white font-bold">About Me</h2>
+
+                        <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4 text-sm sm:text-base text-justify leading-relaxed">
+                            <p>
+                                I'm Ankit Sharma, a Final Year Computer Engineering student at Thakur College of Engineering &amp; Technology, Mumbai, with a strong academic record and a CGPA of <span className="font-semibold text-white">9.79</span>.
+                            </p>
+
+                            <p>
+                                What excites me most about Computer Science is problem-solving. I am particularly passionate about Data Structures and Algorithms because they go beyond coding-they demonstrate how complex real-world problems can be solved efficiently. From route optimization in navigation systems to search recommendations on digital platforms, I enjoy understanding how algorithms shape and optimize our everyday lives.
+                            </p>
+
+                            <p>
+                                Beyond academics and coding, I successfully completed my three-year journey as an NCC Naval Wing Cadet and earned the prestigious NCC 'C' Certificate. My experience in NCC has instilled leadership, discipline, teamwork, and adaptability—qualities that continue to guide me in both my personal and professional life.
+                            </p>
+
+                            <p>
+                                I am always eager to learn, embrace new challenges, and contribute to building impactful and efficient software solutions.
+                            </p>
+                        </div>
+
+                        <div className="mt-6 sm:mt-8">
+                            <h3 className="text-xl sm:text-2xl text-white font-semibold mb-4">Highlights</h3>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                                <div className="flex flex-col items-center text-center gap-2 bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                                    <div className="text-2xl">🎓</div>
+                                    <div>
+                                        <div className="text-xs sm:text-sm text-gray-300">Status</div>
+                                        <div className="text-white font-semibold text-sm">Final Year B.E. Computer Engineering Student</div>
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col items-center text-center gap-2 bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                                    <div className="text-2xl">🏆</div>
+                                    <div>
+                                        <div className="text-xs sm:text-sm text-gray-300">CGPA</div>
+                                        <div className="text-white font-semibold text-sm">9.79</div>
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col items-center text-center gap-2 bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                                    <div className="text-2xl">💻</div>
+                                    <div>
+                                        <div className="text-xs sm:text-sm text-gray-300">LeetCode</div>
+                                        <div className="text-white font-semibold text-sm"><Counter end={200} duration={1400} suffix={"+"} /></div>
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col items-center text-center gap-2 bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                                    <div className="text-2xl">🚀</div>
+                                    <div>
+                                        <div className="text-xs sm:text-sm text-gray-300">Deployment</div>
+                                        <div className="text-white font-semibold text-sm">Projects Deployed on Vercel</div>
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col items-center text-center gap-2 bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                                    <div className="text-2xl">⚓</div>
+                                    <div>
+                                        <div className="text-xs sm:text-sm text-gray-300">NCC</div>
+                                        <div className="text-white font-semibold text-sm">'B' & 'C' Certificate Holder</div>
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col items-center text-center gap-2 bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                                    <div className="text-2xl">🌱</div>
+                                    <div>
+                                        <div className="text-xs sm:text-sm text-gray-300">Learning</div>
+                                        <div className="text-white font-semibold text-sm">Continuously learning and improving</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         
                     </div>
+
+                      <aside className="md:w-1/3 w-full md:mt-12 mt-6">
+                        <div className="bg-gray-800 rounded-lg p-4 sm:p-6 shadow-lg">
+                            <h4 className="text-lg sm:text-xl text-white font-semibold mb-4">Info</h4>
+                            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
+                                <li><span className="font-medium">Name:</span> Ankit Sharma</li>
+                                <li><span className="font-medium">Degree:</span> B.E. Computer Engineering</li>
+                                <li><span className="font-medium">College:</span> Thakur College of Engineering &amp; Technology</li>
+                                <li><span className="font-medium">CGPA:</span> 9.79</li>
+                                <li><span className="font-medium">Location:</span> Mumbai, Maharashtra</li>
+                                <li><span className="font-medium">Email:</span> <a href="#" className="text-orange-400 hover:underline">ankit.2907ms@gmail.com</a></li>
+                            </ul>
+                        </div>
+
+                        <div className="mt-6">
+                            <img src="https://img.freepik.com/free-vector/programming-concept-illustration_114360-1325.jpg" alt="about" className="w-full rounded-lg shadow-md" />
+                        </div>
+                    </aside>
                 </div>
             </div>
-            <div className="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12">
-                    
-                    <div className="md:7/12 lg:w-6/12">
-                        <h2 className="text-2xl text-gray-900 font-bold md:text-4xl">
-                        💡 Web Developer | Code. Build. Innovate.
-                        </h2>
-                        <p className="mt-6 text-gray-600">
-                        Passionate Web Developer skilled in HTML, CSS, JavaScript, React, MySQL, and modern frameworks like Tailwind and Bootstrap. Experienced in building responsive and high-performance web applications. Proficient in Git, GitHub, and VS Code, with a strong focus on UI/UX and optimization. Eager to contribute technical expertise to innovative projects.
-                        </p>
-                        
-                    </div>
-                    <div className="md:5/12 lg:w-5/12">
-                        
-                        <img
-                            src="https://img.freepik.com/free-vector/programming-concept-illustration_114360-1351.jpg?t=st=1743361561~exp=1743365161~hmac=111756de288a1c7968e12f5c95430ced74608b24c984cc0981ee77e4eea1e280&w=740"
-                            alt="image"
-                        />
-                    </div>
-                </div>
         </div>
     );
 }
