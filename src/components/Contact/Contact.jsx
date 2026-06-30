@@ -1,8 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import { SiLeetcode } from "react-icons/si";
 
 export default function Contact() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: "",
+    });
+    const [statusMessage, setStatusMessage] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setIsSubmitting(true);
+        setStatusMessage("Sending your message...");
+
+        try {
+            const response = await fetch("https://formsubmit.co/ajax/ankit.2907ms@gmail.com", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                    _subject: `Portfolio Contact from ${formData.name}`,
+                }),
+            });
+
+            if (response.ok) {
+                setFormData({ name: "", email: "", message: "" });
+                setStatusMessage("Your message has been sent successfully.");
+            } else {
+                setStatusMessage("Sorry, something went wrong. Please try again later.");
+            }
+        } catch (error) {
+            setStatusMessage("Sorry, something went wrong. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <div className="bg-gray-900 text-gray-100 py-8 sm:py-12 md:py-16">
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -64,10 +110,68 @@ export default function Contact() {
                         </a>
                     </div>
 
-                    <div className="rounded-3xl border border-slate-800 bg-slate-950/90 p-6 sm:p-8 text-center text-slate-300">
-                        <p className="text-sm sm:text-base leading-6 sm:leading-7">
-                            Always open to new opportunities, collaborations, and meaningful conversations.
-                        </p>
+                    <div className="rounded-3xl border border-slate-800 bg-slate-950/90 p-6 sm:p-8 text-slate-300">
+                        <div className="mb-6 text-center">
+                            <p className="text-sm sm:text-base leading-6 sm:leading-7">
+                                Always open to new opportunities, collaborations, and meaningful conversations.
+                            </p>
+                        </div>
+
+                        <form onSubmit={handleSubmit} className="mx-auto max-w-2xl space-y-4">
+                            <div className="grid gap-4 sm:grid-cols-2">
+                                <label className="block text-left text-sm font-medium text-slate-200">
+                                    <span className="mb-2 block">Name</span>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        placeholder="Your name"
+                                        required
+                                        className="w-full rounded-2xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-sm text-white outline-none transition focus:border-orange-400"
+                                    />
+                                </label>
+
+                                <label className="block text-left text-sm font-medium text-slate-200">
+                                    <span className="mb-2 block">Email</span>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        placeholder="Your email"
+                                        required
+                                        className="w-full rounded-2xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-sm text-white outline-none transition focus:border-orange-400"
+                                    />
+                                </label>
+                            </div>
+
+                            <label className="block text-left text-sm font-medium text-slate-200">
+                                <span className="mb-2 block">Message</span>
+                                <textarea
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    placeholder="Write your message here..."
+                                    required
+                                    rows="5"
+                                    className="w-full rounded-2xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-sm text-white outline-none transition focus:border-orange-400"
+                                />
+                            </label>
+
+                            <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="rounded-full bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:bg-orange-400"
+                                >
+                                    {isSubmitting ? "Sending..." : "Send Message"}
+                                </button>
+                                {statusMessage && (
+                                    <p className="text-sm text-emerald-400">{statusMessage}</p>
+                                )}
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
